@@ -15,12 +15,17 @@ export async function createBlog(data: z.infer<typeof BlogFormSchema>) {
         return JSON.stringify(resultBlog)
     } else {
         const result = await supabase.from("blog_content").insert({ blog_id: resultBlog.data.id, content: data.content });
-        // revalidation
+        revalidatePath(DASHBOARD);
         return JSON.stringify(result);
     }
 }
 
 export async function readBlogs() {
+    const supabase = await createSupabaseServerClient();
+    return supabase.from("blog").select("*").eq("is_published", true).order("created_at", { ascending: true });
+}
+
+export async function readBlogsAdmin() {
     const supabase = await createSupabaseServerClient();
     return supabase.from("blog").select("*").order("created_at", { ascending: true });
 }
