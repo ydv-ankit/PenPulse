@@ -25,6 +25,11 @@ export async function readBlogs() {
     return supabase.from("blog").select("*").eq("is_published", true).order("created_at", { ascending: true });
 }
 
+export async function readBlogsByUserId(user_id: string) {
+    const supabase = await createSupabaseServerClient();
+    return supabase.from("blog").select("*").eq("user_id", user_id).order("created_at", { ascending: true });
+}
+
 export async function readBlogsAdmin() {
     const supabase = await createSupabaseServerClient();
     return supabase.from("blog").select("*").order("created_at", { ascending: true });

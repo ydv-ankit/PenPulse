@@ -29,6 +29,7 @@ import { BlogFormSchema } from "../schema";
 import { z } from "zod";
 import { IBlogDetail } from "@/lib/types";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import GoBack from "@/components/GoBack";
 
 export default function BlogForm({
   onHandleSubmit,
@@ -92,24 +93,6 @@ export default function BlogForm({
             </span>
             <FormField
               control={form.control}
-              name="is_premium"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <div className="flex items-center gap-1 border bg-zinc-700 p-2 rounded-md">
-                      <StarIcon />
-                      <span>Premium</span>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </div>
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name="is_published"
               render={({ field }) => (
                 <FormItem>
@@ -127,18 +110,21 @@ export default function BlogForm({
               )}
             />
           </div>
-          <Button
-            className="flex items-center gap-2"
-            disabled={!form.formState.isValid}>
-            {isPending ? (
-              <AiOutlineLoading3Quarters
-                className={cn("animate-spin", { hidden: !isPending })}
-              />
-            ) : (
-              <BsSave />
-            )}
-            Save
-          </Button>
+          <div className="flex gap-2">
+            <GoBack />
+            <Button
+              className="flex items-center gap-2"
+              disabled={!form.formState.isValid}>
+              {isPending ? (
+                <AiOutlineLoading3Quarters
+                  className={cn("animate-spin", { hidden: !isPending })}
+                />
+              ) : (
+                <BsSave />
+              )}
+              Save
+            </Button>
+          </div>
         </div>
         <FormField
           control={form.control}
@@ -161,7 +147,7 @@ export default function BlogForm({
                   />
                   <div
                     className={cn(
-                      "lg:px-10",
+                      "px-2",
                       isPreview
                         ? "mx-auto w-full lg:w-4/5"
                         : "w-1/2 lg:block hidden"
@@ -198,7 +184,7 @@ export default function BlogForm({
                   />
                   <div
                     className={cn(
-                      "lg:px-10",
+                      "px-2",
                       isPreview
                         ? "mx-auto w-full lg:w-4/5"
                         : "w-1/2 lg:block hidden"
@@ -208,7 +194,7 @@ export default function BlogForm({
                         <p>Click on preview to see image</p>
                       </>
                     ) : (
-                      <div className="relative h-80 mt-5 border rounded-md">
+                      <div className="relative h-80 mt-5 border rounded-md px-2">
                         <Image
                           src={form.getValues().image_url}
                           alt="preview"
@@ -240,18 +226,18 @@ export default function BlogForm({
                     placeholder="content"
                     {...field}
                     className={cn(
-                      "border-none font-medium leading-relaxed text-lg resize-none h-full",
+                      "border font-medium leading-relaxed text-lg resize-none h-full",
                       isPreview ? "w-0 p-0" : "w-full lg:w-1/2"
                     )}
                   />
                   <div
                     className={cn(
-                      "overflow-y-auto",
+                      "overflow-y-auto border",
                       isPreview
                         ? "mx-auto w-full lg:w-4/5"
                         : "w-1/2 lg:block hidden"
                     )}>
-                    <MarkdownPreview content={form.getValues().content} />
+                    <MarkdownPreview content={form.getValues().content} className="p-2" />
                   </div>
                 </div>
               </FormControl>
@@ -260,7 +246,6 @@ export default function BlogForm({
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
       </form>
     </Form>
   );

@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import { createBrowserClient } from "@supabase/ssr";
 import { useUser } from "@/lib/store/user";
-import { User } from "@supabase/supabase-js";
 
 export default function SessionProvider() {
   const setUser = useUser((state) => state.setUser);

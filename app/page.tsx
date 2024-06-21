@@ -1,9 +1,9 @@
-import { Button } from "@/components/ui/button";
 import { readBlogs } from "@/lib/actions/blog";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
+  
   const { data: blogs } = await readBlogs();
   return (
     <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-5 p-5 xl:p-0">

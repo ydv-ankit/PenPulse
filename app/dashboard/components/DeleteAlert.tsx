@@ -9,6 +9,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
+  AlertDialogAction,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -60,14 +61,16 @@ export default function DeleteAlert({ blogId }: { blogId: string }) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <form onSubmit={onSubmit}>
-            <Button className="flex items-center gap-2">
-              <AiOutlineLoading3Quarters
-                className={cn("animate-spin", { hidden: !isPending })}
-              />
-              Continue
-            </Button>
-          </form>
+          <AlertDialogAction>
+            <form onSubmit={onSubmit}>
+              <Button className="flex items-center gap-2">
+                <AiOutlineLoading3Quarters
+                  className={cn("animate-spin", { hidden: !isPending })}
+                />
+                Continue
+              </Button>
+            </form>
+          </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
