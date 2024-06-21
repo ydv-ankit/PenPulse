@@ -9,7 +9,7 @@ export default function Navbar() {
   const user = useUser((state) => state.user);
 
   return (
-    <nav className="flex items-center justify-between">
+    <nav className="flex items-center justify-between border-b pb-4">
       <div className="group">
         <Link href="/" className="text-2xl font-bold">
           PenPulse

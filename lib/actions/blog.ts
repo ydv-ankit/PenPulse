@@ -61,3 +61,8 @@ export async function updateBlogDetailById(id: string, data: z.infer<typeof Blog
         return JSON.stringify(result);
     }
 }
+
+export async function readBlogById(id: string) {
+    const supabase = await createSupabaseServerClient();
+    return supabase.from("blog").select("*").eq("id", id).single();
+}
