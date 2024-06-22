@@ -60,14 +60,7 @@ export async function middleware(request: NextRequest) {
 
 	const { data } = await supabase.auth.getSession();
 
-	if (data.session) {
-		if (
-			// protect this page only admin can access this /dashboard/members
-			data.session.user.user_metadata.role === "admin"
-		) {
-			return NextResponse.redirect(new URL("/", request.url));
-		}
-	} else {
+	if (data.session === null) {
 		return NextResponse.redirect(new URL("/", request.url));
 	}
 }
