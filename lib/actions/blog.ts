@@ -27,7 +27,7 @@ export async function readBlogs() {
 
 export async function readBlogsByUserId(user_id: string) {
     const supabase = await createSupabaseServerClient();
-    return supabase.from("blog").select("*").eq("user_id", user_id).order("created_at", { ascending: true });
+    return supabase.from("blog").select("*").eq("userid", user_id).order("created_at", { ascending: true });
 }
 
 export async function readBlogsAdmin() {

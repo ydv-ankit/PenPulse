@@ -14,6 +14,7 @@ export default function Page() {
     const res = await createBlog(data);
     const { error } = JSON.parse(res);
     if (error?.message) {
+      console.log(error);
       toast({
         title: `Failed to create blog`,
         description: (

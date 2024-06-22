@@ -11,17 +11,20 @@ import { z } from "zod";
 import { BlogFormSchema } from "../schema";
 import Link from "next/link";
 
-export default async function BlogTable() {
-  // const { data: blogs } =
-  //   userCookie.user.user_metadata.role === "admin"
-  //     ? await readBlogsAdmin()
-  //     : await readBlogsByUserId(userCookie.user.id);
-  const { data: blogs } = await readBlogsAdmin();
+export default async function BlogTable({
+  user,
+}: {
+  user: { id: string | undefined; role: any } | null;
+}) {
+  const { data: blogs } =
+    user?.role === "admin"
+      ? await readBlogsAdmin()
+      : await readBlogsByUserId(user?.id!);
 
   return (
     <div className="overflow-x-auto">
       <div className="border bg-gradient-dark rounded-md md:w-full w-[800px]">
-        {blogs?.length === undefined ? (
+        {blogs?.length === 0 ? (
           <h1 className="p-4 text-center font-bold text-xl">
             Create a blog first
           </h1>

@@ -41,9 +41,7 @@ export async function GET(request: Request) {
 			return NextResponse.redirect(requestUrl.origin + next);
 		}
 	} else {
-		console.log("no code?");
+		// return the user to an error page with instructions
+		return NextResponse.redirect(requestUrl.origin + "/auth/error");
 	}
-
-	// return the user to an error page with instructions
-	return NextResponse.redirect(requestUrl.origin + "/auth/error");
 }

@@ -12,8 +12,10 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { DashboardIcon, LockOpen1Icon } from "@radix-ui/react-icons";
 import { createBrowserClient } from "@supabase/ssr";
+import { useRouter } from "next/navigation";
 
 export default function Profile() {
+  const router = useRouter();
   const user = useUser((state) => state.user);
   const setUser = useUser((state) => state.setUser);
 
@@ -25,6 +27,7 @@ export default function Profile() {
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setUser(undefined);
+    router.push("/");
   };
 
   return (
