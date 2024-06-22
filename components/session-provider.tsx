@@ -19,6 +19,6 @@ export default function SessionProvider() {
 
   useEffect(() => {
     readUserSession();
-  }, []);
+  }, [readUserSession]);
   return <></>;
 }
