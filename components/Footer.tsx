@@ -25,7 +25,12 @@ export default function Footer() {
         <div className="flex justify-center items-center">
           <div className="">
             <div className="text-xl font-bold my-2">
-              PenPulse - <span className="text-xl font-medium">Ankit Ydv</span>
+              <Link
+                href={"https://github.com/ydv-ankit/PenPulse"}
+                target="_blank">
+                <span className="mr-2 hover:underline">PenPulse</span>
+              </Link>
+              - <span className="text-xl font-medium">Ankit Ydv</span>
             </div>
             <div className="text-md opacity-65">
               &copy; {new Date().getFullYear()} - All rights reserved
