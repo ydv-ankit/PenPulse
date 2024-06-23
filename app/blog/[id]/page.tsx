@@ -22,6 +22,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           className="object-cover object-centerm rounded-md"
         />
       </div>
+      <div className="border-b w-full mb-4"></div>
       <MarkdownPreview content={data?.blog_content?.content as string} />
     </div>
   );
