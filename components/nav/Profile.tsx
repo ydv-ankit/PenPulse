@@ -35,7 +35,11 @@ export default function Profile() {
       <Popover>
         <PopoverTrigger>
           <Image
-            src={user?.user_metadata?.avatar_url}
+            src={
+              user?.user_metadata?.avatar_url
+                ? user?.user_metadata?.avatar_url
+                : `https://avatar.iran.liara.run/username?username=${user?.user_metadata?.user_name}`
+            }
             alt={user?.user_metadata?.user_name}
             width={50}
             height={50}
